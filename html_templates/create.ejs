@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<%- include('./support_templates/head.ejs') %>
+<body>
+
+    <%- include('./support_templates/nav.ejs') %>
+
+    <div class="create-task-content">
+        <form action="/checklist" method="POST">
+
+            <label for="taskName">Task Name:</label>
+            <input type="text" name="taskName" id="taskName" required>
+
+            <label for="taskGroup">Task Group:</label>
+            <select name="taskGroup" id="taskGroup">
+                <option value="none" selected disabled hidden>Select task group</option>
+                <option value="Spare Part">Spare Part</option>
+                <option value="PSI">PSI</option>
+                <option value="Quality">Quality</option>
+            </select>
+
+            <label for="dueDate">Due Date:</label>
+            <input type="date" name="dueDate" id="dueDate" required>
+
+
+            <button>Create Task</button>
+
+        </form>
+    </div>
+    
+    <!-- Footer -->
+    <%- include('./support_templates/footer.ejs') %>
+</body>
+</html>

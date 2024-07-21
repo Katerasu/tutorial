@@ -9,40 +9,31 @@
 
         <div class="content-header flex justify-between items-center">
             <div>
-                <h1 class="font-extrabold text-[30px] leading-[45px]">Add New Task</h1>
+                <h1 class="font-extrabold text-[30px] leading-[45px]">Task Details</h1>
             </div>
         </div>
-        <form id="taskForm" class="group/form flex justify-center shrink-0 gap-[30px]" action="/checklist" method="POST">
+        <div id="taskContent" class="group/form flex justify-center shrink-0 gap-[30px]">
             <div class="flex flex-col gap-5 p-5 bg-white rounded-[30px] w-[500px] shrink-0 h-fit">
 
-                <div class="group/taskname">
-                    <label for="taskname" class="font-semibold">Task Name</label>
+                <div class="group/taskName">
+                    <label for="taskName" class="font-semibold">Task Name</label>
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px] focus-within:ring-2 focus-within:ring-taskia-purple">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
                             <img src="img/icons/note-favorite-outline.svg" class="h-full" alt="icon">
                         </div>
-                        <input id="taskName" type="text"
-                            class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"
-                            placeholder="Type task name" name="taskName" required>
+                        <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.taskName %></h1>
                     </div>
                 </div>
-
-                <div class="group/taskgroup">
+ 
+                <div class="group/taskGroup">
                     <label for="priority" class="font-semibold">Task Group</label>
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px]">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
                             <img src="img/icons/layer.svg" class="h-full" alt="icon">
                         </div>
-                        <select id="taskGroup"
-                            class="font-semibold focus:outline-none w-full invalid:text-taskia-grey invalid:font-normal appearance-none bg-[url(img/icons/arrow-down.svg)] bg-no-repeat bg-right"
-                            name="priority" required>
-                            <option value="" disabled selected hidden>Select task group</option>
-                            <option value="PSI" class="font-semibold text-taskia-black">PSI</option>
-                            <option value="Spare" class="font-semibold text-taskia-black">Spare</option>
-                            <option value="Quality" class="font-semibold text-taskia-black">Quality</option>
-                        </select>
+                        <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.taskGroup %></h1>
                     </div>
                 </div>
 
@@ -53,11 +44,22 @@
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
                             <img src="img/icons/calendar.svg" class="h-full" alt="icon">
                         </div>
-                        <input id="dueDate" type="date" class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full" name="dueDate" required>
+                        <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.dueDate %></h1>
                     </div>
                 </div>
 
-                <button class="flex gap-[10px] justify-center items-center text-white p-[12px_16px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey">Save New Task</button>
+                <div class="group/taskStatus">
+                    <label for="priority" class="font-semibold">Status</label>
+                    <div
+                        class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px]">
+                        <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
+                            <img src="img/icons/calendar.svg" class="h-full" alt="icon">
+                        </div>
+                        <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.status %></h1>
+                    </div>
+                </div>
+
+                <!-- <a class="flex gap-[10px] justify-center items-center text-white p-[12px_16px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey" data-doc>Save New Task</button> -->
 
             </div>
         </form>

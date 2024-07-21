@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Task = require('./models/model')
+const Task = require('./models/model');
+const { render } = require('ejs');
 
 //________________Set up______________
 //Set up express
@@ -95,7 +96,13 @@ app.get('/checklist', (req, res) => {
 });
 
 //Get request to task detail
-app.get('/checklist/:id')
+app.get('/checklist/:taskid', (req, res) => {
+    const id = req.params.taskid;
+    console.log(id);
+    Task.findById(id)
+        .then((result) => res.render('task_details', { title: 'Task Details', task: result }))
+        .catch((err) => console.log(err));
+});
 
 //Post request 
 app.post('/checklist', (req, res) => {

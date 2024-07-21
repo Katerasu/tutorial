@@ -98,9 +98,16 @@ app.get('/checklist', (req, res) => {
 //Get request to task detail
 app.get('/checklist/:taskid', (req, res) => {
     const id = req.params.taskid;
-    console.log(id);
     Task.findById(id)
-        .then((result) => res.render('task_details', { title: 'Task Details', task: result }))
+        .then((result) => res.render('details', { title: 'Task Details', task: result }))
+        .catch((err) => console.log(err));
+});
+
+//Delete request
+app.delete('/checklist/:taskid', (req, res) => {
+    const id = req.params.taskid;
+    Task.findByIdAndDelete(id)
+        .then((result) => res.json({ redirect: '/checklist' })) //Cannot do redirect here as this is an AJAX request so need to do redirect from FE
         .catch((err) => console.log(err));
 });
 

@@ -4,7 +4,7 @@
 <%- include('./support_templates/head.ejs') %>
 <body>
 
-    <div class="flex flex-col gap-[30px]">
+    <div class="flex flex-col gap-[30px] bg-taskia-background-grey">
         <%- include('./support_templates/nav.ejs') %>
 
         <div class="content-header flex justify-between items-center">
@@ -20,7 +20,7 @@
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px] focus-within:ring-2 focus-within:ring-taskia-purple">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
-                            <img src="img/icons/note-favorite-outline.svg" class="h-full" alt="icon">
+                            <img src="/img/icons/note-favorite-outline.svg" class="h-full" alt="icon">
                         </div>
                         <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.taskName %></h1>
                     </div>
@@ -31,7 +31,7 @@
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px]">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
-                            <img src="img/icons/layer.svg" class="h-full" alt="icon">
+                            <img src="/img/icons/layer.svg" class="h-full" alt="icon">
                         </div>
                         <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.taskGroup %></h1>
                     </div>
@@ -42,7 +42,7 @@
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px]">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
-                            <img src="img/icons/calendar.svg" class="h-full" alt="icon">
+                            <img src="/img/icons/calendar.svg" class="h-full" alt="icon">
                         </div>
                         <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.dueDate %></h1>
                     </div>
@@ -53,13 +53,13 @@
                     <div
                         class="peer flex items-center p-[12px_16px] h-12 rounded-full border border-taskia-background-grey mt-[6px]">
                         <div class="mr-[10px] w-6 h-6 flex items-center justify-center shrink-0">
-                            <img src="img/icons/calendar.svg" class="h-full" alt="icon">
+                            <img src="/img/icons/calendar.svg" class="h-full" alt="icon">
                         </div>
                         <h2 class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"><%= task.status %></h1>
                     </div>
                 </div>
 
-                <!-- <a class="flex gap-[10px] justify-center items-center text-white p-[12px_16px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey" data-doc>Save New Task</button> -->
+                <a id="dropTask" href="#" class="flex gap-[10px] justify-center items-center font-semibold text-taskia-red border border-taskia-red p-[12px_20px] h-12 rounded-full" data-doc="<%= task._id %>">Drop</a>
 
             </div>
         </form>
@@ -67,5 +67,21 @@
     
     <!-- Footer -->
     <%- include('./support_templates/footer.ejs') %>
+
+    <script>
+        const drop = document.querySelector('#dropTask');
+
+        drop.addEventListener('click', (e) => {
+            const endpoint = `/checklist/${drop.dataset.doc}`;
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch((err) => console.log(err));
+        });
+
+    </script>
 </body>
 </html>

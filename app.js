@@ -57,7 +57,6 @@ app.get('/create-task', (req, res) => {
         });
 })
 
-
 //Getting all the tasks
 app.get('/all-tasks', (req, res) => {
     Task.find()
@@ -75,18 +74,6 @@ app.get('/get-task', (req, res) => {
 //Get request for homepage
 app.get('/', (req, res) => {
     res.redirect('/checklist')
-});
-
-//Get request for about page
-app.get('/about', (req, res) => {
-    // res.send('<p>about page</p>') //Similar to res.write but auto set header content type
-    // res.sendFile('./html_templates/about.html', {root: __dirname})
-    res.render('about', { title: 'About' });
-});
-
-//Get request for create new task page
-app.get('/create', (req, res) => {
-    res.render('create', { title: 'Create' });
 });
 
 //Other routes

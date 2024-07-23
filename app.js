@@ -26,10 +26,6 @@ app.set('views', 'html_templates'); //Setting dir for views
 app.use(express.static(path.join(__dirname, 'html_templates'))); // For css
 app.use(express.static(path.join(__dirname, 'html_templates', 'style'))); //For icon and images
 
-
-//Listen for request
-//app.listen(3000); Move to mongodb connection
-
 //________________ Middleware _____________ 
 
 //Middleware is a kind of function run inbetween server
